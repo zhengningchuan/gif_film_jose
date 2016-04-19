@@ -14,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,7 +28,7 @@ import java.util.Random;
 import pl.droidsonroids.gif.GifImageView;
 
 
-public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener,SeekBar.OnSeekBarChangeListener {
+public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener, SeekBar.OnSeekBarChangeListener {
     //两两弹幕之间的间隔时间
     public static final int DELAY_TIME = 500;
 
@@ -39,10 +42,14 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     SeekBar seekBar;
     TextView currentPageTv;
     RelativeLayout bottom_layout;
+    LinearLayout bottom_describe_layout;
+    private Animation playAnimation;
+    private Animation describeAnimation;
     private int totalNum = 2;
-    private int seekPosition=0;
+    private int seekPosition = 0;
     int startX = 0;
     private Random random = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,27 +59,58 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         seekBar = (SeekBar) this.findViewById(R.id.sb_detail_play_progress);
         currentPageTv = (TextView) this.findViewById(R.id.current_page_tv);
         bottom_layout = (RelativeLayout) this.findViewById(R.id.bottom_layout);
+        bottom_describe_layout = (LinearLayout) this.findViewById(R.id.bottom_describe_layout);
         List<GifFragment> gifFragments = new ArrayList<GifFragment>();
         gifFragments.add(new GifFragment(R.drawable.anim_flag_england));
         gifFragments.add(new GifFragment(R.drawable.anim_flag_iceland));
-        viewPager.setAdapter(new FragAdapter(getSupportFragmentManager(),gifFragments));
+        viewPager.setAdapter(new FragAdapter(getSupportFragmentManager(), gifFragments));
         seekBar.setOnSeekBarChangeListener(this);
         viewPager.addOnPageChangeListener(this);
         viewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int endX;
-                switch (event.getAction()){
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        startX =(int) event.getX();
+                        startX = (int) event.getX();
                         break;
                     case MotionEvent.ACTION_UP:
                         endX = (int) event.getX();
-                        if(startX==endX){
-                            if(bottom_layout.getVisibility() == View.VISIBLE){
-                                bottom_layout.setVisibility(View.INVISIBLE);
-                            }else {
-                                bottom_layout.setVisibility(View.VISIBLE);
+                        if (startX == endX) {
+                            if (bottom_layout.getVisibility() == View.VISIBLE) {
+                                playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_disappear_anim);
+                                playAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                            bottom_layout.setVisibility(View.INVISIBLE);
+                                            describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
+                                            bottom_describe_layout.startAnimation(describeAnimation);
+                                            bottom_describe_layout.setVisibility(View.VISIBLE);
+                                        }else {
+                                            bottom_describe_layout.setVisibility(View.GONE);
+                                            playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
+                                            bottom_layout.startAnimation(playAnimation);
+                                            bottom_layout.setVisibility(View.VISIBLE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+                                bottom_layout.startAnimation(playAnimation);
+
+                            } else {
+                                describeAnimation = AnimationUtils.loadAnimation(MainActivity.this,R.anim.bottom_layout_disappear_anim);
+                                bottom_describe_layout.startAnimation(playAnimation);
+
                             }
                         }
                         startX = 0;
@@ -103,8 +141,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     @Override
     public void onPageSelected(int position) {
-        currentPageTv.setText(position+1+"");
-        seekBar.setProgress((int)(((float)position/totalNum)*100));
+        currentPageTv.setText(position + 1 + "");
+        seekBar.setProgress((int) (((float) position / totalNum) * 100));
     }
 
     @Override
@@ -114,8 +152,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        seekPosition =(int) ((progress/100.0)*2);
-        currentPageTv.setText(seekPosition+1+"");
+        seekPosition = (int) ((progress / 100.0) * 2);
+        currentPageTv.setText(seekPosition + 1 + "");
     }
 
     @Override
@@ -128,11 +166,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         viewPager.setCurrentItem(seekPosition);
     }
 
-    public class GifFragment extends Fragment{
+    public class GifFragment extends Fragment {
         int resId;
         GifImageView gifImageView;
         RelativeLayout rootlayout;
-        public GifFragment(){
+
+        public GifFragment() {
             super();
         }
 
@@ -142,10 +181,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view= inflater.inflate(R.layout.gif_imageview_fragment_layout, container, false);
+            View view = inflater.inflate(R.layout.gif_imageview_fragment_layout, container, false);
             gifImageView = (GifImageView) view.findViewById(R.id.gifview);
             gifImageView.setBackgroundResource(resId);
-            gifImageView.setOnClickListener(new View.OnClickListener(){
+            gifImageView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -186,7 +225,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         public FragAdapter(FragmentManager fm, List<GifFragment> fragments) {
             super(fm);
             // TODO Auto-generated constructor stub
-            mFragments=fragments;
+            mFragments = fragments;
         }
 
         @Override

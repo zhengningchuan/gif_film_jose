@@ -16,54 +16,102 @@
             android:id="@+id/play_btn"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/bofangqi"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/bofangqi" />
 
         <TextView
             android:id="@+id/current_page_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_toRightOf="@id/play_btn"
-            android:textColor="@android:color/white"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_centerVertical="true"/>
+            android:layout_toRightOf="@id/play_btn"
+            android:text="1"
+            android:textColor="@android:color/white" />
 
         <ImageView
             android:id="@+id/orientation_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/change_orientation"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="15dp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/change_orientation" />
 
         <TextView
             android:id="@+id/total_page_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
             android:layout_centerVertical="true"
-            android:textColor="@android:color/white"
-            android:layout_toLeftOf="@id/orientation_btn"/>
+            android:layout_toLeftOf="@id/orientation_btn"
+            android:text="2"
+            android:textColor="@android:color/white" />
 
         <SeekBar
             android:id="@+id/sb_detail_play_progress"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/current_page_tv"
             android:layout_toLeftOf="@id/total_page_tv"
+            android:layout_toRightOf="@id/current_page_tv"
             android:progressDrawable="@drawable/progress_holo_light"
             android:thumb="@drawable/detail_icon_schedule_ball" />
 
-
-
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_describe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="弹"/>
+
+            <TextView
+                android:id="@+id/tanmu_num_tv"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="9sp"
+                android:textColor="@android:color/white"
+                android:text="49"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/content_describe_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="3"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:text="曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/viewpager_layout"
