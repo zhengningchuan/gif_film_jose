@@ -43,6 +43,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     TextView currentPageTv;
     RelativeLayout bottom_layout;
     LinearLayout bottom_describe_layout;
+    RelativeLayout top_bar_layout;
     private Animation playAnimation;
     private Animation describeAnimation;
     private int totalNum = 2;
@@ -59,6 +60,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         seekBar = (SeekBar) this.findViewById(R.id.sb_detail_play_progress);
         currentPageTv = (TextView) this.findViewById(R.id.current_page_tv);
         bottom_layout = (RelativeLayout) this.findViewById(R.id.bottom_layout);
+        top_bar_layout = (RelativeLayout) this.findViewById(R.id.top_bar_layout);
         bottom_describe_layout = (LinearLayout) this.findViewById(R.id.bottom_describe_layout);
         List<GifFragment> gifFragments = new ArrayList<GifFragment>();
         gifFragments.add(new GifFragment(R.drawable.anim_flag_england));
@@ -92,11 +94,13 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                             describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_describe_layout.startAnimation(describeAnimation);
                                             bottom_describe_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setVisibility(View.GONE);
                                         }else {
                                             bottom_describe_layout.setVisibility(View.GONE);
                                             playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_layout.startAnimation(playAnimation);
                                             bottom_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setVisibility(View.VISIBLE);
                                         }
                                     }
 
@@ -109,7 +113,35 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
                             } else {
                                 describeAnimation = AnimationUtils.loadAnimation(MainActivity.this,R.anim.bottom_layout_disappear_anim);
-                                bottom_describe_layout.startAnimation(playAnimation);
+                                describeAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                            bottom_layout.setVisibility(View.INVISIBLE);
+                                            describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
+                                            bottom_describe_layout.startAnimation(describeAnimation);
+                                            bottom_describe_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setVisibility(View.GONE);
+                                        }else {
+                                            bottom_describe_layout.setVisibility(View.GONE);
+                                            playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
+                                            bottom_layout.startAnimation(playAnimation);
+                                            bottom_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setVisibility(View.VISIBLE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+                                bottom_describe_layout.startAnimation(describeAnimation);
 
                             }
                         }

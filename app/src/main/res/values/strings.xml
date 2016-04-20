@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AZBarrage</string>
-    <string name="default_text">本应用原文链接：http://blog.csdn.net/xieyupeng520/article/details/49232925</string>
+    <string name="default_text">just for test</string>
 
     <string-array name="default_text_array">
         <item>颓废不是我的调调，积极才是我的王道</item>
@@ -18,6 +18,5 @@
         <item>加油加油加油！</item>
         <item>这是一个弹幕的例子</item>
         <item>祝你生日快乐~</item>
-        <item>本应用链接：http://blog.csdn.net/xieyupeng520/article/details/49232925</item>
     </string-array>
 </resources>

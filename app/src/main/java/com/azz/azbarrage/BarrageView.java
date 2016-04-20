@@ -72,7 +72,7 @@ public class BarrageView extends TextView {
         posX = windowWidth;
 
         //5.设置y为屏幕高度内内随机，需要注意的是，文字是以左下角为起始点计算坐标的，所以要加上TextSize的大小
-        posY = textSize + random.nextInt(windowHeight/3 - textSize);
+        posY = textSize + random.nextInt(windowHeight/5 - textSize);
     }
 
     @Override

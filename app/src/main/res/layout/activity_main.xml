@@ -10,7 +10,8 @@
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/play_btn"
@@ -67,34 +68,34 @@
         android:id="@+id/bottom_describe_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:visibility="gone">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="15sp"
+                android:text="弹"
                 android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:text="弹"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tanmu_num_tv"
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="9sp"
+                android:text="49"
                 android:textColor="@android:color/white"
-                android:text="49"/>
+                android:textSize="9sp" />
 
         </LinearLayout>
 
@@ -102,14 +103,14 @@
             android:id="@+id/content_describe_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="2dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:maxLines="3"
-            android:textSize="12sp"
-            android:textColor="@android:color/white"
+            android:paddingTop="2dp"
             android:text="曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~"
-            android:layout_gravity="center"/>
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -125,6 +126,82 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/comments_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/comments_icon_iv" />
+
+        <ImageView
+            android:id="@+id/shoucang_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/comments_icon_iv"
+            android:src="@drawable/shoucang_icon_iv" />
+
+        <ImageView
+            android:id="@+id/share_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/shoucang_icon_iv"
+            android:src="@drawable/share_icon_iv" />
+
+        <ImageView
+            android:id="@+id/tanmu_swicher_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/share_icon_iv"
+            android:src="@drawable/share_icon_iv" />
+
+        <ImageView
+            android:id="@+id/back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/back_iv" />
+
+        <LinearLayout
+            android:id="@+id/top_movie_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/back_iv"
+            android:layout_toLeftOf="@id/tanmu_swicher_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/movie_tittle_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="碟中谍"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/movie_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="动作|2016|美国"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 
     <!--<com.azz.azbarrage.BarrageView-->
