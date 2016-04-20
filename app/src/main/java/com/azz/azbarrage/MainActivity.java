@@ -1,6 +1,5 @@
 package com.azz.azbarrage;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -84,7 +82,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                 playAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
-
+                                        if(bottom_layout.getVisibility() == View.VISIBLE){
+                                            top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_disappear_anim));
+                                            top_bar_layout.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     @Override
@@ -94,12 +95,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                             describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_describe_layout.startAnimation(describeAnimation);
                                             bottom_describe_layout.setVisibility(View.VISIBLE);
-                                            top_bar_layout.setVisibility(View.GONE);
                                         }else {
                                             bottom_describe_layout.setVisibility(View.GONE);
                                             playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_layout.startAnimation(playAnimation);
                                             bottom_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_appear_anim));
                                             top_bar_layout.setVisibility(View.VISIBLE);
                                         }
                                     }
@@ -116,7 +117,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                 describeAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
-
+                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                            top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_disappear_anim));
+                                            top_bar_layout.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     @Override
@@ -126,12 +130,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                             describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_describe_layout.startAnimation(describeAnimation);
                                             bottom_describe_layout.setVisibility(View.VISIBLE);
-                                            top_bar_layout.setVisibility(View.GONE);
                                         }else {
                                             bottom_describe_layout.setVisibility(View.GONE);
                                             playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_layout.startAnimation(playAnimation);
                                             bottom_layout.setVisibility(View.VISIBLE);
+                                            top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_appear_anim));
                                             top_bar_layout.setVisibility(View.VISIBLE);
                                         }
                                     }
