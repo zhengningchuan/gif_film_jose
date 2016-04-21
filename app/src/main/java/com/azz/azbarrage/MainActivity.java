@@ -36,8 +36,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
      * 标签：程序是否处于暂停状态
      * 15/11/01 测试按Home后一分钟以上回到程序会发生满屏线程阻塞
      */
-    private boolean isOnPause = false;
-    private boolean isCommentsOn = true;
+    private static boolean isOnPause = false;
+    private static boolean isCommentsOn = true;
     GifImageView gifView;
     MyViewPager viewPager;
     SeekBar seekBar;
@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     private int totalNum = 2;
     private int seekPosition = 0;
     int startX = 0;
-    private Random random = new Random();
+    private static Random random = new Random();
     private FragAdapter fragAdapter;
 
     @Override
@@ -85,8 +85,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         tanmu_swicher_iv.setOnClickListener(this);
         back_iv.setOnClickListener(this);
         List<GifFragment> gifFragments = new ArrayList<GifFragment>();
-        gifFragments.add(new GifFragment(R.drawable.anim_flag_england));
-        gifFragments.add(new GifFragment(R.drawable.anim_flag_iceland));
+        gifFragments.add(GifFragment.newInstance(R.drawable.anim_flag_england));
+        gifFragments.add(GifFragment.newInstance(R.drawable.anim_flag_iceland));
         fragAdapter = new FragAdapter(getSupportFragmentManager(), gifFragments);
         viewPager.setAdapter(fragAdapter);
         seekBar.setOnSeekBarChangeListener(this);
@@ -245,7 +245,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         }
     }
 
-    public class GifFragment extends Fragment {
+    public static class GifFragment extends Fragment {
         int resId;
         GifImageView gifImageView;
         RelativeLayout rootlayout;
@@ -256,15 +256,19 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
             super();
         }
 
-        public GifFragment(int resId) {
-            this.resId = resId;
+        public static final GifFragment newInstance(int resId){
+            GifFragment gifFragment = new GifFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt( "resId", resId);
+            gifFragment.setArguments(bundle);
+            return gifFragment;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.gif_imageview_fragment_layout, container, false);
             gifImageView = (GifImageView) view.findViewById(R.id.gifview);
-            gifImageView.setBackgroundResource(resId);
+            gifImageView.setBackgroundResource(getArguments().getInt("resId"));
             gifImageView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -287,7 +291,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                     if (!isOnPause && isCommentsOn) {
                         Log.e("azzz", "发送弹幕");
                         //新建一条弹幕，并设置文字
-                        final BarrageView barrageView = new BarrageView(MainActivity.this);
+                        final BarrageView barrageView = new BarrageView(GifFragment.this.getContext());
                         barrageView.setText(texts[random.nextInt(texts.length)]); //随机设置文字
                         rootlayout.addView(barrageView, lp);
                     }
