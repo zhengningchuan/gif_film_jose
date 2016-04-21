@@ -14,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.Random;
 import pl.droidsonroids.gif.GifImageView;
 
 
-public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener, SeekBar.OnSeekBarChangeListener {
+public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     //两两弹幕之间的间隔时间
     public static final int DELAY_TIME = 500;
 
@@ -35,6 +37,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
      * 15/11/01 测试按Home后一分钟以上回到程序会发生满屏线程阻塞
      */
     private boolean isOnPause = false;
+    private boolean isCommentsOn = true;
     GifImageView gifView;
     MyViewPager viewPager;
     SeekBar seekBar;
@@ -42,12 +45,21 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     RelativeLayout bottom_layout;
     LinearLayout bottom_describe_layout;
     RelativeLayout top_bar_layout;
+    ImageView comments_icon_iv;
+    ImageView shoucang_icon_iv;
+    ImageView share_icon_iv;
+    ImageView tanmu_swicher_iv;
+    ImageView back_iv;
+    TextView movie_tittle_tv;
+    TextView movie_info_tv;
+
     private Animation playAnimation;
     private Animation describeAnimation;
     private int totalNum = 2;
     private int seekPosition = 0;
     int startX = 0;
     private Random random = new Random();
+    private FragAdapter fragAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +72,23 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         bottom_layout = (RelativeLayout) this.findViewById(R.id.bottom_layout);
         top_bar_layout = (RelativeLayout) this.findViewById(R.id.top_bar_layout);
         bottom_describe_layout = (LinearLayout) this.findViewById(R.id.bottom_describe_layout);
+        comments_icon_iv = (ImageView) this.findViewById(R.id.comments_icon_iv);
+        shoucang_icon_iv = (ImageView) this.findViewById(R.id.shoucang_icon_iv);
+        share_icon_iv = (ImageView) this.findViewById(R.id.share_icon_iv);
+        tanmu_swicher_iv = (ImageView) this.findViewById(R.id.tanmu_swicher_iv);
+        back_iv = (ImageView) this.findViewById(R.id.back_iv);
+        movie_tittle_tv = (TextView) this.findViewById(R.id.movie_tittle_tv);
+        movie_info_tv = (TextView) this.findViewById(R.id.movie_info_tv);
+        comments_icon_iv.setOnClickListener(this);
+        shoucang_icon_iv.setOnClickListener(this);
+        share_icon_iv.setOnClickListener(this);
+        tanmu_swicher_iv.setOnClickListener(this);
+        back_iv.setOnClickListener(this);
         List<GifFragment> gifFragments = new ArrayList<GifFragment>();
         gifFragments.add(new GifFragment(R.drawable.anim_flag_england));
         gifFragments.add(new GifFragment(R.drawable.anim_flag_iceland));
-        viewPager.setAdapter(new FragAdapter(getSupportFragmentManager(), gifFragments));
+        fragAdapter = new FragAdapter(getSupportFragmentManager(), gifFragments);
+        viewPager.setAdapter(fragAdapter);
         seekBar.setOnSeekBarChangeListener(this);
         viewPager.addOnPageChangeListener(this);
         viewPager.setOnTouchListener(new View.OnTouchListener() {
@@ -82,7 +107,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                 playAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
-                                        if(bottom_layout.getVisibility() == View.VISIBLE){
+                                        if (bottom_layout.getVisibility() == View.VISIBLE) {
                                             top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_disappear_anim));
                                             top_bar_layout.setVisibility(View.GONE);
                                         }
@@ -90,12 +115,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
                                     @Override
                                     public void onAnimationEnd(Animation animation) {
-                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                        if (bottom_layout.getVisibility() == View.VISIBLE) {
                                             bottom_layout.setVisibility(View.INVISIBLE);
                                             describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_describe_layout.startAnimation(describeAnimation);
                                             bottom_describe_layout.setVisibility(View.VISIBLE);
-                                        }else {
+                                        } else {
                                             bottom_describe_layout.setVisibility(View.GONE);
                                             playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_layout.startAnimation(playAnimation);
@@ -113,11 +138,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                 bottom_layout.startAnimation(playAnimation);
 
                             } else {
-                                describeAnimation = AnimationUtils.loadAnimation(MainActivity.this,R.anim.bottom_layout_disappear_anim);
+                                describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_disappear_anim);
                                 describeAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
-                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                        if (bottom_layout.getVisibility() == View.VISIBLE) {
                                             top_bar_layout.setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_disappear_anim));
                                             top_bar_layout.setVisibility(View.GONE);
                                         }
@@ -125,12 +150,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
                                     @Override
                                     public void onAnimationEnd(Animation animation) {
-                                        if(bottom_layout.getVisibility() == View.VISIBLE) {
+                                        if (bottom_layout.getVisibility() == View.VISIBLE) {
                                             bottom_layout.setVisibility(View.INVISIBLE);
                                             describeAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_describe_layout.startAnimation(describeAnimation);
                                             bottom_describe_layout.setVisibility(View.VISIBLE);
-                                        }else {
+                                        } else {
                                             bottom_describe_layout.setVisibility(View.GONE);
                                             playAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_layout_appear_anim);
                                             bottom_layout.startAnimation(playAnimation);
@@ -202,10 +227,30 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         viewPager.setCurrentItem(seekPosition);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == comments_icon_iv) {
+            Toast.makeText(this, "跳转评论区", Toast.LENGTH_SHORT).show();
+        } else if (v == shoucang_icon_iv) {
+            Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show();
+        } else if (v == share_icon_iv) {
+            Toast.makeText(this, "开始分享", Toast.LENGTH_SHORT).show();
+        } else if (v == tanmu_swicher_iv) {
+            isCommentsOn = !isCommentsOn;
+            GifFragment fragment = (GifFragment) fragAdapter.getItem(viewPager.getCurrentItem());
+            fragment.removeBarrageView();
+            Toast.makeText(this, "弹幕关闭", Toast.LENGTH_SHORT).show();
+        } else if (v == back_iv) {
+            Toast.makeText(this, "退出此页", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public class GifFragment extends Fragment {
         int resId;
         GifImageView gifImageView;
         RelativeLayout rootlayout;
+        Handler handler;
+        Runnable createBarrageView;
 
         public GifFragment() {
             super();
@@ -233,12 +278,13 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
             //设置宽高全屏
             final ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-            final Handler handler = new Handler();
-            Runnable createBarrageView = new Runnable() {
+            if(handler ==null) {
+                handler = new Handler();
+            }
+            createBarrageView = new Runnable() {
                 @Override
                 public void run() {
-                    if (!isOnPause) {
+                    if (!isOnPause && isCommentsOn) {
                         Log.e("azzz", "发送弹幕");
                         //新建一条弹幕，并设置文字
                         final BarrageView barrageView = new BarrageView(MainActivity.this);
@@ -252,6 +298,13 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
             handler.post(createBarrageView);
             return view;
         }
+
+        public void removeBarrageView(){
+            if(handler!=null){
+                handler.removeCallbacks(createBarrageView);
+            }
+        }
+
     }
 
     public class FragAdapter extends FragmentPagerAdapter {
