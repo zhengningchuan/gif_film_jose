@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -55,6 +57,9 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     ImageView back_iv;
     TextView movie_tittle_tv;
     TextView movie_info_tv;
+    ListView commentsList;
+    EditText commentsEditText;
+    RelativeLayout commentsLayout;
 
     private Animation playAnimation;
     private Animation describeAnimation;
@@ -82,6 +87,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         back_iv = (ImageView) this.findViewById(R.id.back_iv);
         movie_tittle_tv = (TextView) this.findViewById(R.id.movie_tittle_tv);
         movie_info_tv = (TextView) this.findViewById(R.id.movie_info_tv);
+        commentsList = (ListView) this.findViewById(R.id.comments_lv);
+        commentsEditText = (EditText) this.findViewById(R.id.comments_edtitext);
+        commentsLayout = (RelativeLayout) this.findViewById(R.id.comments_layout);
+
         comments_icon_iv.setOnClickListener(this);
         shoucang_icon_iv.setOnClickListener(this);
         share_icon_iv.setOnClickListener(this);
