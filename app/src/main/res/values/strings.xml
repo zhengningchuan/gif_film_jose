@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AZBarrage</string>
+    <string name="app_name">GifMovie</string>
     <string name="default_text">just for test</string>
 
     <string-array name="default_text_array">
@@ -11,7 +11,6 @@
         <item>认真你就赢了</item>
         <item>我这么努力你都不赞我</item>
         <item>等你一切都准备好了，或许你就没动力了</item>
-        <item>我的博客地址：http://blog.csdn.net/xieyupeng520</item>
         <item>为什么毕业过了几年以后，同学之间的差距变的那么大？</item>
         <item>本来差距就大，不过学校就那么点事，不显而已。</item>
         <item>w1dyjtx!</item>

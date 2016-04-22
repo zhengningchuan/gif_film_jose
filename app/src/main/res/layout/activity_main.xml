@@ -4,7 +4,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.azz.josemovie.MainActivity">
 
     <RelativeLayout
         android:id="@+id/bottom_layout"
@@ -120,7 +120,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_layout">
 
-        <com.azz.azbarrage.MyViewPager
+        <com.azz.josemovie.MyViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -179,8 +179,8 @@
             android:id="@+id/top_movie_info_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/back_iv"
             android:layout_toLeftOf="@id/tanmu_swicher_iv"
+            android:layout_toRightOf="@id/back_iv"
             android:orientation="vertical">
 
             <TextView
@@ -195,16 +195,42 @@
                 android:id="@+id/movie_info_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:text="动作|2016|美国"
+                android:textColor="@android:color/white"
                 android:textSize="10sp" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/comments_layout"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ListView
+                android:id="@+id/comments_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/white"
+                android:dividerHeight="1dp">
+
+            </ListView>
+
+            <EditText
+                android:id="@+id/comments_edtitext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:hint="请不要超过30字"
+                android:textColorHint="@android:color/holo_red_light"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
 
 
-    <!--<com.azz.azbarrage.BarrageView-->
+    <!--<BarrageView-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent"-->
     <!--android:text="hello"-->

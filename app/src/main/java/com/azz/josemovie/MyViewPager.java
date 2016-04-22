@@ -1,4 +1,4 @@
-package com.azz.azbarrage;
+package com.azz.josemovie;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

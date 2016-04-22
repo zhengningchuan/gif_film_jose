@@ -1,5 +1,6 @@
-package com.azz.azbarrage;
+package com.azz.josemovie;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jose.gifmovie.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -238,7 +241,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         } else if (v == tanmu_swicher_iv) {
             isCommentsOn = !isCommentsOn;
             GifFragment fragment = (GifFragment) fragAdapter.getItem(viewPager.getCurrentItem());
-            fragment.removeBarrageView();
+            //fragment.removeBarrageView();
             Toast.makeText(this, "弹幕关闭", Toast.LENGTH_SHORT).show();
         } else if (v == back_iv) {
             Toast.makeText(this, "退出此页", Toast.LENGTH_SHORT).show();
@@ -251,6 +254,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         RelativeLayout rootlayout;
         Handler handler;
         Runnable createBarrageView;
+        Context context;
 
         public GifFragment() {
             super();
@@ -262,6 +266,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
             bundle.putInt( "resId", resId);
             gifFragment.setArguments(bundle);
             return gifFragment;
+        }
+
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+            this.context = context;
         }
 
         @Override
@@ -291,7 +301,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                     if (!isOnPause && isCommentsOn) {
                         Log.e("azzz", "发送弹幕");
                         //新建一条弹幕，并设置文字
-                        final BarrageView barrageView = new BarrageView(GifFragment.this.getContext());
+                        final BarrageView barrageView = new BarrageView(context);
                         barrageView.setText(texts[random.nextInt(texts.length)]); //随机设置文字
                         rootlayout.addView(barrageView, lp);
                     }
@@ -309,6 +319,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
             }
         }
 
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+
+        }
     }
 
     public class FragAdapter extends FragmentPagerAdapter {
