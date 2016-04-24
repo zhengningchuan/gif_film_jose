@@ -1,4 +1,4 @@
-package com.azz.josemovie;
+package com.jose.gifmovie;
 
 import android.content.Context;
 import android.graphics.Canvas;

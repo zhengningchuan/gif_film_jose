@@ -1,4 +1,4 @@
-package com.azz.azbarrage;
+package com.azz.gifmovie;
 
 import org.junit.Test;
 

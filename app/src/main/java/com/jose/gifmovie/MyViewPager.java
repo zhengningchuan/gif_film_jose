@@ -1,4 +1,4 @@
-package com.azz.josemovie;
+package com.jose.gifmovie;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

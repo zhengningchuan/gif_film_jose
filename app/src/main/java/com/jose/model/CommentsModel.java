@@ -1,4 +1,4 @@
-package model;
+package com.jose.model;
 
 /**
  * Created by zhengningchuan on 16/4/22.

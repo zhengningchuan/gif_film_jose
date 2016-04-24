@@ -4,7 +4,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.azz.josemovie.MainActivity">
+    tools:context="com.jose.gifmovie.MainActivity">
 
     <RelativeLayout
         android:id="@+id/bottom_layout"
@@ -80,6 +80,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/comments_switcher_tv"
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -120,7 +121,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_layout">
 
-        <com.azz.josemovie.MyViewPager
+        <com.jose.gifmovie.MyViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -200,35 +201,35 @@
                 android:textSize="10sp" />
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/comments_layout"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <ListView
-                android:id="@+id/comments_lv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@android:color/white"
-                android:dividerHeight="1dp">
-
-            </ListView>
-
-            <EditText
-                android:id="@+id/comments_edtitext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:hint="请不要超过30字"
-                android:textColorHint="@android:color/holo_red_light"
-                android:textColor="@android:color/white"/>
-
-        </RelativeLayout>
-
-
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/comments_layout"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="invisible">
+
+        <ListView
+            android:id="@+id/comments_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/white"
+            android:dividerHeight="1dp">
+
+        </ListView>
+
+        <EditText
+            android:id="@+id/comments_edtitext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:hint="请不要超过30字"
+            android:textSize="12sp"
+            android:textColorHint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
 
     <!--<BarrageView-->
     <!--android:layout_width="match_parent"-->

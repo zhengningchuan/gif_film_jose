@@ -1,4 +1,4 @@
-package adapter;
+package com.jose.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jose.gifmovie.R;
+import com.jose.model.CommentsModel;
 
 import java.util.List;
 
-import model.CommentsModel;
 
 /**
  * Created by zhengningchuan on 16/4/22.
@@ -65,8 +65,8 @@ public class CommentsListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.comments_icon_iv.setImageResource(R.drawable.adai);
-        //viewHolder.comments_name_tv.setText();
-        //viewHolder.comments_content_tv.setText();
+        viewHolder.comments_name_tv.setText("R");
+        viewHolder.comments_content_tv.setText("很好的电影~~~~");
         return convertView;
     }
 }
