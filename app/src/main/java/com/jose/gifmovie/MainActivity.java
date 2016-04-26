@@ -60,17 +60,20 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     TextView movie_tittle_tv;
     TextView movie_info_tv;
     TextView comments_switcher_tv;
+    TextView total_page_tv;
+    TextView content_describe_tv;
     ListView commentsListView;
     EditText commentsEditText;
     RelativeLayout commentsLayout;
 
     private Animation playAnimation;
     private Animation describeAnimation;
-    private int totalNum = 2;
+    private int totalNum = 13;
     private int seekPosition = 0;
     int startX = 0;
     private static Random random = new Random();
     private FragAdapter fragAdapter;
+    private String[] jieshuoArray;
     private List<CommentsModel> dataList;
 
     @Override
@@ -91,6 +94,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         back_iv = (ImageView) this.findViewById(R.id.back_iv);
         movie_tittle_tv = (TextView) this.findViewById(R.id.movie_tittle_tv);
         movie_info_tv = (TextView) this.findViewById(R.id.movie_info_tv);
+        total_page_tv = (TextView) this.findViewById(R.id.total_page_tv);
+        content_describe_tv = (TextView) this.findViewById(R.id.content_describe_tv);
         commentsListView = (ListView) this.findViewById(R.id.comments_lv);
         comments_switcher_tv = (TextView) this.findViewById(R.id.comments_switcher_tv);
         commentsEditText = (EditText) this.findViewById(R.id.comments_edtitext);
@@ -102,14 +107,27 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         tanmu_swicher_iv.setOnClickListener(this);
         back_iv.setOnClickListener(this);
         List<GifFragment> gifFragments = new ArrayList<GifFragment>();
-        gifFragments.add(GifFragment.newInstance(R.drawable.anim_flag_england));
-        gifFragments.add(GifFragment.newInstance(R.drawable.anim_flag_iceland));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m1));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m2));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m3));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m4));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m5));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m6));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m7));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m8));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m9));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m10));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m11));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m12));
+        gifFragments.add(GifFragment.newInstance(R.drawable.m13));
         fragAdapter = new FragAdapter(getSupportFragmentManager(), gifFragments);
         dataList = new ArrayList<CommentsModel>();
         dataList.add(new CommentsModel());
         dataList.add(new CommentsModel());
         dataList.add(new CommentsModel());
         commentsListView.setAdapter(new CommentsListViewAdapter(this, dataList));
+        jieshuoArray = getResources().getStringArray(R.array.default_jieshuo_array);
+        content_describe_tv.setText(jieshuoArray[0]);
         viewPager.setAdapter(fragAdapter);
         seekBar.setOnSeekBarChangeListener(this);
         viewPager.addOnPageChangeListener(this);
@@ -168,7 +186,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                                             top_bar_layout.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.top_layout_disappear_anim));
                                             top_bar_layout.setVisibility(View.GONE);
                                         }
-                                        if(commentsLayout.getVisibility()==View.VISIBLE){
+                                        if (commentsLayout.getVisibility() == View.VISIBLE) {
                                             commentsLayout.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_layout_disappear_anim));
                                             commentsLayout.setVisibility(View.INVISIBLE);
                                         }
@@ -229,7 +247,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     @Override
     public void onPageSelected(int position) {
         currentPageTv.setText(position + 1 + "");
-        seekBar.setProgress((int) (((float) position / totalNum) * 100));
+        seekBar.setProgress((position) * (seekBar.getMax() / totalNum));
+        content_describe_tv.setText(jieshuoArray[position]);
     }
 
     @Override
@@ -239,8 +258,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        seekPosition = (int) ((progress / 100.0) * 2);
-        currentPageTv.setText(seekPosition + 1 + "");
+        seekPosition = seekBar.getProgress() / (seekBar.getMax() / totalNum) + 1;
+        if (seekPosition > totalNum) {
+            seekPosition = totalNum;
+        }
+        currentPageTv.setText(seekPosition + "");
+        content_describe_tv.setText(jieshuoArray[seekPosition - 1]);
     }
 
     @Override
@@ -250,7 +273,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        viewPager.setCurrentItem(seekPosition);
+        viewPager.setCurrentItem(seekPosition-1);
     }
 
     @Override
@@ -262,6 +285,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         } else if (v == share_icon_iv) {
             Toast.makeText(this, "开始分享", Toast.LENGTH_SHORT).show();
         } else if (v == tanmu_swicher_iv) {
+            if (isCommentsOn) {
+                tanmu_swicher_iv.setBackgroundResource(R.drawable.tanmu_on);
+            } else {
+                tanmu_swicher_iv.setBackgroundResource(R.drawable.tanmu_off);
+            }
             isCommentsOn = !isCommentsOn;
             GifFragment fragment = (GifFragment) fragAdapter.getItem(viewPager.getCurrentItem());
             //fragment.removeBarrageView();

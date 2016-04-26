@@ -49,7 +49,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/orientation_btn"
             android:textSize="10sp"
-            android:text="2"
+            android:text="13"
             android:textColor="@android:color/white" />
 
         <SeekBar
@@ -172,7 +172,7 @@
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/share_icon_iv"
-            android:src="@drawable/share_icon_iv" />
+            android:src="@drawable/tanmu_off" />
 
         <ImageView
             android:id="@+id/back_iv"
