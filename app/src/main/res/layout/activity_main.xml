@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/play_btn"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="20dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:src="@drawable/bofangqi" />
@@ -29,12 +29,13 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/play_btn"
             android:text="1"
+            android:textSize="10sp"
             android:textColor="@android:color/white" />
 
         <ImageView
             android:id="@+id/orientation_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="17dp"
+            android:layout_height="13dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/orientation_btn"
+            android:textSize="10sp"
             android:text="2"
             android:textColor="@android:color/white" />
 
@@ -86,7 +88,7 @@
                 android:gravity="center"
                 android:text="弹"
                 android:textColor="@android:color/white"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -95,8 +97,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="49"
-                android:textColor="@android:color/white"
-                android:textSize="9sp" />
+                android:textColor="#7b7b7b"
+                android:textSize="6sp" />
 
         </LinearLayout>
 
@@ -110,8 +112,8 @@
             android:maxLines="3"
             android:paddingTop="2dp"
             android:text="曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:textColor="#00a3bc"
+            android:textSize="11sp" />
 
     </LinearLayout>
 
@@ -131,46 +133,51 @@
     <RelativeLayout
         android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="32dp"
         android:gravity="center_vertical"
+        android:background="@android:color/black"
         android:visibility="gone">
 
         <ImageView
             android:id="@+id/comments_icon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/comments_icon_iv" />
 
         <ImageView
             android:id="@+id/shoucang_icon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/comments_icon_iv"
             android:src="@drawable/shoucang_icon_iv" />
 
         <ImageView
             android:id="@+id/share_icon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/shoucang_icon_iv"
             android:src="@drawable/share_icon_iv" />
 
         <ImageView
             android:id="@+id/tanmu_swicher_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/share_icon_iv"
             android:src="@drawable/share_icon_iv" />
 
         <ImageView
             android:id="@+id/back_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="10dp"
+            android:layout_height="13dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -180,7 +187,9 @@
             android:id="@+id/top_movie_info_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:layout_toLeftOf="@id/tanmu_swicher_iv"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@id/back_iv"
             android:orientation="vertical">
 
@@ -189,23 +198,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="碟中谍"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textColor="#d4d4d4"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/movie_info_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="动作|2016|美国"
-                android:textColor="@android:color/white"
-                android:textSize="10sp" />
+                android:textColor="#404040"
+                android:textSize="8sp" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/comments_layout"
-        android:layout_width="120dp"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
         android:visibility="invisible">
@@ -224,10 +233,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:hint="请不要超过30字"
+            android:hint="我要发射弹幕！(30字)"
+            android:maxEms="30"
             android:textSize="12sp"
             android:textColorHint="@android:color/holo_red_light"
-            android:textColor="@android:color/white"/>
+            android:textColor="#d8d2c7"/>
 
     </RelativeLayout>
 

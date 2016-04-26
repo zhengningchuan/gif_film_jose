@@ -28,7 +28,7 @@ public class BarrageView extends TextView {
 
     private RollThread rollThread; //滚动线程
 
-    private int textSize = 30; //字体大小
+    private int textSize = 20; //字体大小
     public static final int TEXT_MIN = 12;
     public static final int TEXT_MAX = 60;
     //字体颜色

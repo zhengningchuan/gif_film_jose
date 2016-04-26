@@ -65,8 +65,8 @@ public class CommentsListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.comments_icon_iv.setImageResource(R.drawable.adai);
-        viewHolder.comments_name_tv.setText("R");
-        viewHolder.comments_content_tv.setText("很好的电影~~~~");
+        viewHolder.comments_name_tv.setText("Rooney");
+        viewHolder.comments_content_tv.setText("很好的电影~~~~~~~~");
         return convertView;
     }
 }
