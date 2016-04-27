@@ -37,7 +37,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     //两两弹幕之间的间隔时间
-    public static final int DELAY_TIME = 500;
+    public static final int DELAY_TIME = 1500;
 
     /**
      * 标签：程序是否处于暂停状态

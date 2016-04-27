@@ -28,7 +28,7 @@ public class BarrageView extends TextView {
 
     private RollThread rollThread; //滚动线程
 
-    private int textSize = 20; //字体大小
+    private int textSize = 40; //字体大小
     public static final int TEXT_MIN = 12;
     public static final int TEXT_MAX = 60;
     //字体颜色
@@ -132,7 +132,7 @@ public class BarrageView extends TextView {
                 postInvalidate();
                 //3.延迟，不然会造成执行太快动画一闪而过
                 try {
-                    Thread.sleep(30);
+                    Thread.sleep(80);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

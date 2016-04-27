@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/play_btn"
-            android:layout_width="20dp"
-            android:layout_height="26dp"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:src="@drawable/bofangqi" />
@@ -29,13 +29,13 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/play_btn"
             android:text="1"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="@android:color/white" />
 
         <ImageView
             android:id="@+id/orientation_btn"
-            android:layout_width="17dp"
-            android:layout_height="13dp"
+            android:layout_width="25dp"
+            android:layout_height="19dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/orientation_btn"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:text="13"
             android:textColor="@android:color/white" />
 
@@ -83,12 +83,12 @@
 
             <TextView
                 android:id="@+id/comments_switcher_tv"
-                android:layout_width="15dp"
+                android:layout_width="22dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="弹"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -98,7 +98,7 @@
                 android:gravity="center"
                 android:text="49"
                 android:textColor="#7b7b7b"
-                android:textSize="6sp" />
+                android:textSize="9sp" />
 
         </LinearLayout>
 
@@ -113,7 +113,7 @@
             android:paddingTop="2dp"
             android:text="曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~曼联是冠军，大家都懂的~~~~~"
             android:textColor="#00a3bc"
-            android:textSize="11sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -140,8 +140,8 @@
 
         <ImageView
             android:id="@+id/comments_icon_iv"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -149,8 +149,8 @@
 
         <ImageView
             android:id="@+id/shoucang_icon_iv"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/comments_icon_iv"
@@ -158,8 +158,8 @@
 
         <ImageView
             android:id="@+id/share_icon_iv"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/shoucang_icon_iv"
@@ -167,8 +167,8 @@
 
         <ImageView
             android:id="@+id/tanmu_swicher_iv"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/share_icon_iv"
@@ -176,8 +176,8 @@
 
         <ImageView
             android:id="@+id/back_iv"
-            android:layout_width="10dp"
-            android:layout_height="13dp"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -199,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:text="碟中谍"
                 android:textColor="#d4d4d4"
-                android:textSize="13sp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/movie_info_tv"
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:text="动作|2016|美国"
                 android:textColor="#404040"
-                android:textSize="8sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
     </RelativeLayout>
