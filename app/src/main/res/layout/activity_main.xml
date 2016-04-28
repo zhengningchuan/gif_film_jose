@@ -95,7 +95,8 @@
                 android:id="@+id/tanmu_num_tv"
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="49"
                 android:textColor="#7b7b7b"
                 android:textSize="9sp" />
@@ -133,7 +134,7 @@
     <RelativeLayout
         android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="38dp"
         android:background="@android:color/black"
         android:gravity="center_vertical"
         android:visibility="gone">
@@ -199,15 +200,15 @@
                 android:layout_height="wrap_content"
                 android:text="碟中谍"
                 android:textColor="#d4d4d4"
-                android:textSize="19sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/movie_info_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="动作|2016|美国"
-                android:textColor="#404040"
-                android:textSize="12sp" />
+                android:textColor="#d4d4d4"
+                android:textSize="10sp" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="8dp"
         android:text="很好的电影"
         android:textSize="14sp"
