@@ -29,8 +29,8 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/play_btn"
             android:text="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/orientation_btn"
@@ -48,9 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/orientation_btn"
-            android:textSize="15sp"
             android:text="13"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
 
         <SeekBar
             android:id="@+id/sb_detail_play_progress"
@@ -134,17 +134,17 @@
         android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:gravity="center_vertical"
         android:background="@android:color/black"
+        android:gravity="center_vertical"
         android:visibility="gone">
 
         <ImageView
             android:id="@+id/comments_icon_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:src="@drawable/comments_icon_iv" />
 
         <ImageView
@@ -160,8 +160,8 @@
             android:id="@+id/share_icon_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/shoucang_icon_iv"
             android:src="@drawable/share_icon_iv" />
 
@@ -169,8 +169,8 @@
             android:id="@+id/tanmu_swicher_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/share_icon_iv"
             android:src="@drawable/tanmu_off" />
 
@@ -187,9 +187,9 @@
             android:id="@+id/top_movie_info_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
             android:layout_toLeftOf="@id/tanmu_swicher_iv"
-            android:layout_centerVertical="true"
             android:layout_toRightOf="@id/back_iv"
             android:orientation="vertical">
 
@@ -224,20 +224,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@android:color/white"
+            android:background="#b2000000"
             android:dividerHeight="1dp">
 
         </ListView>
 
-        <EditText
-            android:id="@+id/comments_edtitext"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:hint="我要发射弹幕！(30字)"
-            android:maxEms="30"
-            android:textSize="12sp"
-            android:textColorHint="@android:color/holo_red_light"
-            android:textColor="#d8d2c7"/>
+            android:gravity="center_vertical"
+            android:background="#b23c578e">
+
+            <ImageView
+                android:id="@+id/send_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/send_btn"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/comments_edtitext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="我要发射弹幕！(30字)"
+                android:maxEms="30"
+                android:textColor="#d8d2c7"
+                android:layout_toLeftOf="@+id/send_btn"
+                android:layout_marginRight="3dp"
+                android:textColorHint="@android:color/holo_red_light"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
